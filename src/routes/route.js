@@ -1,17 +1,16 @@
 const express = require("express");
 const router = express.Router();
-// const collegeController = require("../controller/");
-// const internController = require("../controller/");
-const auth = require("../middlewares/auth");
+const collegeController = require("../controllers/collegeController");
+const internController = require("../controllers/internController");
 
 router.get("/test-me", function (req, res) {
   res.send("My first ever api!");
 });
 
-router.post("/functionup/colleges");
+router.post("/functionup/colleges", collegeController.registerCollege);
 
-router.post("/functionup/interns");
+router.post("/functionup/interns", internController.interns);
 
-router.get("/functionup/collegeDetails");
+router.get("/functionup/collegeDetails", collegeController.collegeDetails);
 
 module.exports = router;
