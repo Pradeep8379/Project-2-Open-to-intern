@@ -12,6 +12,12 @@ const interns = async function (req, res) {
         .send({ status: false, msg: "incomplete request data" });
     }
     //--mandatory field--//
+    if (data.isDeleted == "true") {
+      return res.status(400).send({
+        status: false,
+        message: "isDeleted must be false...",
+      });
+    }
     if (!validator.isValid(collegeName)) {
       return res
         .status(400)

@@ -10,6 +10,12 @@ const registerCollege = async function (req, res) {
       .status(400)
       .send({ status: false, message: "Please provide college details ..." });
   }
+  if (requestBody.isDeleted == "true") {
+    return res.status(400).send({
+      status: false,
+      message: "isDeleted must be false...",
+    });
+  }
   if (!validator.isValid(name)) {
     return res
       .status(400)

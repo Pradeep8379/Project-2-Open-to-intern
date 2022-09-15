@@ -14,7 +14,7 @@ const isValid = function (value) {
   return false;
 };
 const isValidLink = function (value) {
-  if (/^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gim.test(value))
+  if (/^https?:\/\/.*\.[s3].*\.(png|gif|webp|jpeg|jpg)\??.*$/gim.test(value))
     return true;
   return false;
 };
@@ -44,9 +44,3 @@ module.exports = {
   isValidMobile,
   isValidLink,
 };
-
-// console.log(
-//   isValidLink(
-//     "https://functionup-stg.s3.ap-south-1.amazonaws.com/thorium/iitd.png"
-//   )
-// );
