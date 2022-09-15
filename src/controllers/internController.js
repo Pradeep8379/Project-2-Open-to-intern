@@ -12,7 +12,7 @@ const interns = async function (req, res) {
         .send({ status: false, msg: "incomplete request data" });
     }
     //--mandatory field--//
-    if (data.isDeleted == "true") {
+    if (data.isDeleted == true) {
       return res.status(400).send({
         status: false,
         message: "isDeleted must be false...",
@@ -51,6 +51,9 @@ const interns = async function (req, res) {
     }
     data.collegeId = college._id;
     let internData = await internModel.create(data);
+    ["_id", "updatedAt", "createdAt", "__v"].forEach(
+      (x) => delete internData._doc[x]
+    );
     res.status(201).send({
       status: true,
       data: internData,

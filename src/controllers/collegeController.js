@@ -10,7 +10,7 @@ const registerCollege = async function (req, res) {
       .status(400)
       .send({ status: false, message: "Please provide college details ..." });
   }
-  if (requestBody.isDeleted == "true") {
+  if (requestBody.isDeleted == true) {
     return res.status(400).send({
       status: false,
       message: "isDeleted must be false...",
@@ -38,6 +38,7 @@ const registerCollege = async function (req, res) {
       .send({ status: false, message: "college name already exists..." });
   }
   const collegeData = await collegeModel.create(requestBody);
+  ["_id","updatedAt","createdAt","__v"].forEach((x)=>delete collegeData._doc[x]);
   res.status(201).send({
     status: true,
     data: collegeData,
