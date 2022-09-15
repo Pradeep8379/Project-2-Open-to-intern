@@ -15,10 +15,10 @@ const registerCollege = async function (req, res) {
       .status(400)
       .send({ status: false, message: "Please provide college name ..." });
   }
-  if (!validator.isValid(logoLink)) {
+  if (!validator.isValidLink(logoLink)) {
     return res
       .status(400)
-      .send({ status: false, message: "Please provide logolink ..." });
+      .send({ status: false, message: "Please provide valid logolink ..." });
   }
   if (!validator.isValid(fullName)) {
     return res

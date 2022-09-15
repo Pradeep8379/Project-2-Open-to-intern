@@ -18,25 +18,23 @@ const interns = async function (req, res) {
         .send({ status: false, msg: " collegeName is required...!" });
     }
     if (!validator.isValidName(name)) {
-      return res
-        .status(400)
-        .send({
-          status: false,
-          msg: " Name is required and first character must be capital...!",
-        });
+      return res.status(400).send({
+        status: false,
+        msg: " Name is required and first character must be capital...!",
+      });
     }
     const mobile1 = await internModel.findOne({ mobile: mobile });
     const email1 = await internModel.findOne({ email: email });
+    if (!validator.isValidMobile(mobile) || mobile1) {
+      return res.status(400).send({
+        status: false,
+        msg: "mobile is required , only 10 character and must be unique...!",
+      });
+    }
     if (!validator.isValidEmail(email) || email1) {
       return res.status(400).send({
         status: false,
         msg: "emailId is required and must be unique...!",
-      });
-    }
-    if (!validator.isValid(mobile) || mobile1) {
-      return res.status(400).send({
-        status: false,
-        msg: "mobile is required and must be unique...!",
       });
     }
     const college = await collegeModel.findOne({ name: collegeName });

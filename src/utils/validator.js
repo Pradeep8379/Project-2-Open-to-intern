@@ -13,8 +13,13 @@ const isValid = function (value) {
   if (typeof value === "string" && value.trim().length > 0) return true;
   return false;
 };
-const isMobileValid = function (value) {
-  if (typeof value === Number && value.toString().length === 10) return true;
+const isValidLink = function (value) {
+  if (/^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gim.test(value))
+    return true;
+  return false;
+};
+const isValidMobile = function (value) {
+  if (typeof value === "string" && /^[0-9]\d{9}$/gi.test(value)) return true;
   return false;
 };
 const isValidEmail = function (value) {
@@ -36,7 +41,12 @@ module.exports = {
   isValidObjectId,
   isValidEmail,
   isValidName,
-  isMobileValid,
+  isValidMobile,
+  isValidLink,
 };
 
-// console.log(isStringsArray(undefined));
+// console.log(
+//   isValidLink(
+//     "https://functionup-stg.s3.ap-south-1.amazonaws.com/thorium/iitd.png"
+//   )
+// );
