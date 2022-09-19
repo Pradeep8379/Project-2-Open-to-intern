@@ -3,6 +3,8 @@ const collegeModel = require("../models/collegeModel");
 const validator = require("../utils/validator");
 
 const interns = async function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin",'*')
+
   try {
     let data = req.body;
     let { name, email, mobile, collegeName } = data;

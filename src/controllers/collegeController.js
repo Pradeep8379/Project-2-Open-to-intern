@@ -3,6 +3,8 @@ const internModel = require("../models/internModel");
 const validator = require("../utils/validator");
 
 const registerCollege = async function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin",'*')
+
   try {
     const requestBody = req.body;
     const { name, fullName, logoLink } = requestBody;
@@ -56,6 +58,8 @@ const registerCollege = async function (req, res) {
 };
 
 const collegeDetails = async function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin",'*')
+
   try {
     let collegeName = req.query.collegeName;
     if (!validator.isValid(collegeName))
